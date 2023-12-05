@@ -14,43 +14,47 @@ Objective: Understand the concept of structs and their usage in C.
 
 3. In the main function, create an instance of the `Person` `struct`,populate its attributes with your name, age and height, and use the `printPerson` function to display the details.
 
-    <details>
-    <summary>Possible Solution...</summary>
+4. **Output:**
 
-    ```c
-    #include <stdio.h>
+    ![](./figures/step1.PNG)
 
-    /**
-    * @struct Person
-    * @brief Represents information about a person.
-    */
-    struct Person {
-        char name[50]; ///< Name of the person.
-        int age;       ///< Age of the person.
-        float height;  ///< Height of the person.
-    };
+5.    <details>
+      <summary>Possible Solution...</summary>
 
-    /**
-    * @brief Prints details of a person.
-    * @param p The person to be printed.
-    */
-    void printPerson(struct Person p) {
-        printf("Name: %s\nAge: %d\nHeight: %.2f\n", p.name, p.age, p.height);
-    }
+        ```c
+        #include <stdio.h>
 
-    /**
-    * @brief Main function where the program starts execution.
-    */
-    int main() {
-        // Create an instance of Person, initialize its attributes, and print details
-        struct Person person1 = {"Your Name", 1, 4.0};
-        printPerson(person1);
+        /**
+        * @struct Person
+        * @brief Represents information about a person.
+        */
+        struct Person {
+            char name[50]; ///< Name of the person.
+            int age;       ///< Age of the person.
+            float height;  ///< Height of the person.
+        };
 
-        return 0;
-    }
-    ```
+        /**
+        * @brief Prints details of a person.
+        * @param p The person to be printed.
+        */
+        void printPerson(struct Person p) {
+            printf("Name: %s\nAge: %d\nHeight: %.2f\n", p.name, p.age, p.height);
+        }
 
-    </details>
+        /**
+        * @brief Main function where the program starts execution.
+        */
+        int main() {
+            // Create an instance of Person, initialize its attributes, and print details
+            struct Person person1 = {"Your Name", 1, 4.0};
+            printPerson(person1);
+
+            return 0;
+        }
+        ```
+
+      </details>
 
 
 
@@ -70,51 +74,55 @@ Objective: Explore the concept of unions and their applications in C.
 
 3. In the main function, create an instance of the `Data` `union`, assign values to different members, and use the `printData` function to display the values.
 
-    <details>
-    <summary>Possible Solution</summary>
+4. **Output:**
 
-    ```c
-    #include <stdio.h>
+    ![](./figures/step2.PNG)
 
-    /**
-    * @union Data
-    * @brief Represents different types of data (integer, float, char).
-    */
-    union Data {
-        int integerData; ///< Integer data.
-        float floatData; ///< Float data.
-        char charData;   ///< Character data.
-    };
+5.    <details>
+      <summary>Possible Solution</summary>
 
-    /**
-    * @brief Prints details of data, detecting its type.
-    * @param d The data to be printed.
-    */
-    void printData(union Data d) {
-        printf("Data: ");
-        if (d.integerData) {
-            printf("%d (Integer)\n", d.integerData);
-        } else if (d.floatData) {
-            printf("%.2f (Float)\n", d.floatData);
-        } else {
-            printf("%c (Character)\n", d.charData);
+        ```c
+        #include <stdio.h>
+
+        /**
+        * @union Data
+        * @brief Represents different types of data (integer, float, char).
+        */
+        union Data {
+            int integerData; ///< Integer data.
+            float floatData; ///< Float data.
+            char charData;   ///< Character data.
+        };
+
+        /**
+        * @brief Prints details of data, detecting its type.
+        * @param d The data to be printed.
+        */
+        void printData(union Data d) {
+            printf("Data: ");
+            if (d.integerData) {
+                printf("%d (Integer)\n", d.integerData);
+            } else if (d.floatData) {
+                printf("%.2f (Float)\n", d.floatData);
+            } else {
+                printf("%c (Character)\n", d.charData);
+            }
         }
-    }
 
-    /**
-    * @brief Main function where the program starts execution.
-    */
-    int main() {
-        // Create an instance of Data, assign values, and print details
-        union Data data1;
-        data1.integerData = 42;
-        printData(data1);
+        /**
+        * @brief Main function where the program starts execution.
+        */
+        int main() {
+            // Create an instance of Data, assign values, and print details
+            union Data data1;
+            data1.integerData = 42;
+            printData(data1);
 
-        return 0;
-    }
-    ```
-
-    </details>
+            return 0;
+        }
+        ```
+ 
+      </details>
 
 
 ----------------------------------------
@@ -160,8 +168,11 @@ In this exercise we are going to explore the difference between and `struct` and
     printf("Size of Struct (Person): %lu bytes\n", sizeof(struct Person));
     printf("Size of Union (Data): %lu bytes\n", sizeof(union Data));
     ```
-   
-    <details>
+6. **Output:**
+
+    ![](./figures/step3.PNG)
+
+7.  <details>
     <summary>Possible Solution...</summary>
 
     ```c
@@ -218,16 +229,17 @@ In this exercise we are going to explore the difference between and `struct` and
 
     </details>
 
-- A `struct Person` is defined with attributes representing personal information.
-- A `union Data` is defined with three members: `integerData`, `floatData`, and `charData`.
-- In the `main` function, an instance of both the `struct` and the `union` is created.
-- The program demonstrates how to access and modify members of the `struct` and the `union`.
-- It prints the size of the `struct` and `union` to highlight the memory usage difference.
-
-- This exercise illustrates the key differences between `structs` and `unions`:
-
-  - `Struct`: Each member has its own memory space, and the size of the `struct` is the sum of the sizes of its members.
-  - `Union`: All members share the same memory space, and the size of the `union` is determined by the largest member.
+>**Notes:**
+>>- A `struct Person` is defined with attributes representing personal information.
+>>- A `union Data` is defined with three members: `integerData`, `floatData`, and `charData`.
+>>- In the `main` function, an instance of both the `struct` and the `union` is created.
+>>- The program demonstrates how to access and modify members of the `struct` and the `union`.
+>>- It prints the size of the `struct` and `union` to highlight the memory usage difference.
+>>
+>>- This exercise illustrates the key differences between `structs` and `unions`:
+>>
+>>   - `Struct`: Each member has its own memory space, and the size of the `struct` is the sum of the sizes of its members.
+>>   - `Union`: All members share the same memory space, and the size of the `union` is determined by the largest member.
 
 --------------------------------
 ---------------------------------------
@@ -245,81 +257,92 @@ Objective: Understand how structs and unions can be combined for more complex da
 
 3. In the main function, create an instance of the `Employee` `struct`, populate its attributes, and use the `printEmployee` function to display the details.
 
-    <details>
-    <summary>Possible Solution...</summary>
+4. **Output**:
+    ![](./figures/step4.PNG)
 
-    ```c
-    #include <stdio.h>
+5.    <details>
+      <summary>Possible Solution...</summary>
 
-    /**
-    * @struct Person
-    * @brief Represents information about a person.
-    */
-    struct Person {
-        char name[50]; ///< Name of the person.
-        int age;       ///< Age of the person.
-        float height;  ///< Height of the person.
-    };
+        ```c
+        #include <stdio.h>
 
-    /**
-    * @union Data
-    * @brief Represents different types of data (integer, float, char).
-    */
-    union Data {
-        int integerData; ///< Integer data.
-        float floatData; ///< Float data.
-        char charData;   ///< Character data.
-    };
+        /**
+        * @struct Person
+        * @brief Represents information about a person.
+        */
+        struct Person {
+            char name[50]; ///< Name of the person.
+            int age;       ///< Age of the person.
+            float height;  ///< Height of the person.
+        };
 
-    /**
-    * @struct Employee
-    * @brief Represents information about an employee.
-    */
-    struct Employee {
-        struct Person personalInfo; ///< Personal information of the employee.
-        union Data jobInfo;         ///< Job-related information of the employee.
-    };
+        /**
+        * @union Data
+        * @brief Represents different types of data (integer, float, char).
+        */
+        union Data {
+            int integerData; ///< Integer data.
+            float floatData; ///< Float data.
+            char charData;   ///< Character data.
+        };
 
-    /**
-    * @brief Prints details of data, detecting its type.
-    * @param d The data to be printed.
-    */
-    void printData(union Data d) {
-        printf("Data: ");
-        if (d.integerData) {
-            printf("%d (Integer)\n", d.integerData);
-        } else if (d.floatData) {
-            printf("%.2f (Float)\n", d.floatData);
-        } else {
-            printf("%c (Character)\n", d.charData);
+        /**
+        * @struct Employee
+        * @brief Represents information about an employee.
+        */
+        struct Employee {
+            struct Person personalInfo; ///< Personal information of the employee.
+            union Data jobInfo;         ///< Job-related information of the employee.
+        };
+
+        /**
+        * @brief Prints details of data, detecting its type.
+        * @param d The data to be printed.
+        */
+        void printData(union Data d) {
+            printf("Data: ");
+            if (d.integerData) {
+                printf("%d (Integer)\n", d.integerData);
+            } else if (d.floatData) {
+                printf("%.2f (Float)\n", d.floatData);
+            } else {
+                printf("%c (Character)\n", d.charData);
+            }
         }
-    }
 
-    /**
-    * @brief Prints details of an employee.
-    * @param e The employee to be printed.
-    */
-    void printEmployee(struct Employee e) {
-        printf("Personal Information:\n");
-        printPerson(e.personalInfo);
-        printf("\nJob Information:\n");
-        printData(e.jobInfo);
-    }
+        /**
+        * @brief Prints details of a person.
+        * @param p The person to be printed.
+        */
+        void printPerson(struct Person p) {
+            printf("Name: %s\nAge: %d\nHeight: %.2f\n", p.name, p.age, p.height);
+        }
 
-    /**
-    * @brief Main function where the program starts execution.
-    */
-    int main() {
-        // Create an instance of Employee, assign values, and print details
-        struct Employee employee1 = {{"Alice", 30, 5.5}, {0}};
-        employee1.jobInfo.floatData = 75000.50;
-        printEmployee(employee1);
+        /**
+        * @brief Prints details of an employee.
+        * @param e The employee to be printed.
+        */
+        void printEmployee(struct Employee e) {
+            printf("Personal Information:\n");
+            printPerson(e.personalInfo);
+            printf("\nJob Information:\n");
+            printData(e.jobInfo);
+        }
 
-        return 0;
-    }
-    ```
+        /**
+        * @brief Main function where the program starts execution.
+        */
+        int main() {
+            // Create an instance of Employee, assign values, and print details
+            struct Employee employee1 = {{"Alice", 30, 5.5}, {0}};
+            employee1.jobInfo.floatData = 75000.50;
+            printEmployee(employee1);
 
-    </details>
+            return 0;
+        }
+        ```
+
+      </details>
 
 ## Additional Challenges:
 
