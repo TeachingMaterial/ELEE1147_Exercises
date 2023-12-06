@@ -231,17 +231,21 @@ double kelvinToFahrenheit(double kel);
 16. Next build up the `TempeatureConversion.c` file:
     - include the `TemperatureConversion.h` file
     - use the following formulas to convert between each temperature:
-        - fahrentheit to Celcius \\[ Celcius = \left(\frac{5.0}{9.0}\right) \cdot (fahr - 32.0)\\]
   
-        - fahrenheit to Kelvin \\[ Kelvin = \left(\frac{(fahr -32.0)}{1.79999999}\right) + 273.15\\]
+        - Fahrentheit to:
+          -  \\( Celcius = \left(\frac{5.0}{9.0}\right) \cdot (fahr - 32.0)\\)
 
-        - Celcius to Fahrenheit \\[ Fahrenhiet = \left(cel \cdot \left(\frac{9.0}{5.0}\right)\right) +32.0\\]
+          -  \\(Kelvin = \left(\frac{(fahr -32.0)}{1.79999999}\right) + 273.15\\)
 
-        - Celcius to Kelvin \\[ Kelvin = cel + 273.15\\]
+        - Celcius to:
+          - \\( Fahrenheit = \left(cel \cdot \left(\frac{9.0}{5.0}\right)\right) +32.0\\)
 
-        - Kelvin to Celcis \\[ Celcius = kel - 273.15 \\]
+          - \\( Kelvin = cel + 273.15\\)
 
-        - Kelvin to Fahrenheit \\[Fahrenheit = ((kel - 273.15) * 1.8) + 32.00 \\]
+        - Kelvin to:
+          -  \\( Celcius = kel - 273.15 \\)
+
+          - \\(Fahrenheit = ((kel - 273.15) * 1.8) + 32.00 \\)
 
     >**Note:**
     >> Remember that the function are defined in the `TemperatureConversion.h`. 
