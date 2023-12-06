@@ -229,10 +229,22 @@ double kelvinToFahrenheit(double kel);
 </details>
 
 16. Next build up the `TempeatureConversion.c` file:
-    - include the `TemperatureConversion.c`
+    - include the `TemperatureConversion.h` file
     - use the following formulas to convert between each temperature:
-        - 
+        - fahrentheit to Celcius \\[ Celcius = \left(\frac{5.0}{9.0}\right) \cdot (fahr - 32.0)\\]
+  
+        - fahrenheit to Kelvin \\[ Kelvin = \left(\frac{(fahr -32.0)}{1.79999999}\right) + 273.15\\]
 
+        - Celcius to Fahrenheit \\[ Fahrenhiet = \left(cel \cdot \left(\frac{9.0}{5.0}\right)\right) +32.0\\]
+
+        - Celcius to Kelvin \\[ Kelvin = cel + 273.15\\]
+
+        - Kelvin to Celcis \\[ Celcius = kel - 273.15 \\]
+
+        - Kelvin to Fahrenheit \\[Fahrenheit = ((kel - 273.15) * 1.8) + 32.00 \\]
+
+    >**Note:**
+    >> Remember that the function are defined in the `TemperatureConversion.h`. 
 
     <details>
     <summary>Possible Solution...</summary>
@@ -265,5 +277,90 @@ double kelvinToFahrenheit(double kel);
         return ((kel - 273.15) * 1.8) + 32.00;
     }
     ```
+    </details>
+
+17. Revist `ArithmeticConversion.c` and include the `TemperatureConversion.h` file underneath `#include "MyMaths.h"` line.
+
+18. Continuing lets comment out the previously written code for future reference incase we need it. Above the `float num1 = 0.0f, num2 = 0.0f` line add a `/*` place the proceeding `*/` on the last line of code in this block above the `return 0;`
+
+<details>
+<summary>Possible Solution...</summary>
+
+```c
+int main(){
+
+    /*
+    float num1 = 0.0f, num2 = 0.0f;
+    printf("Enter two numbers, the second number must not be zero: ");
+    scanf_s("%f %f", &num1, &num2);
+    
+    printf("Additon:     %.2f + %.2f = %.2f\n", num1, num2, add(num1, num2));
+    printf("Subtraction: %.2f - %.2f = %.2f\n", num1, num2, subtract(num1, num2));
+    printf("Multiply:    %.2f * %.2f = %.2f\n", num1, num2, multiply(num1, num2));
+    printf("Divison:     %.2f / %.2f = %.2f\n", num1, num2, divide(num1, num2));
+    printf("squared:     %.2f * %.2f = %.2f\n", num1, num1, square(num1));
+    printf("squared:     %.2f * %.2f = %.2f\n", num2, num2, square(num2));
+    */
+    return 0;
+```
+
+</details>
+
+19. To use our temperature functions, reproduce the following line and replicate for the other temperature functions. I would suggest starting in the whitespace between `int main(){` and the `/*` line:
+
+    ```c
+    float num1 = 100.0f;
+
+    printf("Fahrenheit to Ceclius: %.2f -> %.2f \n", num1, fahrenheitToCelcius(num1, num2));
+    ```
+
+    >**Note:**
+    >> Remember that the functions you have implemented return a double, so the second format specifier , `%.2f` will be the returned value.
+
+    <details>
+    <summary>Possible Solution</summary>
+
+    ```c
+    int main(){
+        float num1 = 100.0f;
+
+        printf("Fahrenheit to Ceclius: %.2f -> %.2f \n", num1, fahrenheitToCelcius(num1, num2));
+
+        printf("Fahrenheit to Kelvin: %.2f -> %.2f \n", num1, fahrenheitToKelvin(num1, num2));
+
+        printf("Ceclius to Fahrenheit: %.2f -> %.2f \n", num1, celciusTofahrenheit(num1, num2));
+
+        printf("Ceclius to Kelvin: %.2f -> %.2f \n", num1, celciusToKelivn(num1, num2));
+
+        printf("Kelvin to Farhenheit: %.2f -> %.2f \n", num1, kelvinToFahrenheit(num1, num2));
+
+        printf("Kelvin to Ceclius: %.2f -> %.2f \n", num1, kelvinToCelcius(num1, num2));
+
+        ...
+
+        return 0;
+    }
+    ```
+
+    >**Note:**
+    >> The `...` means and rest of the code, that I have ommitted for readibility 
 
     </details>
+
+20. Run the code and you should see the following output?
+
+
+21. If you get to here try and modify the code so that you can convert from above temperature units to Rankine and vice versa, the following formulas will help you:
+    
+    - Rankine to: 
+      - \\(Celcius = (R − 491.67) \cdot \left(\frac{5}{9}\right) \\) 
+      - \\(Fahrenheit = R − 459.67\\)
+      - \\(Kelvin = R \cdot \left(\frac{5}{9}\right)\\)
+   
+    - ... to Rankine = :
+      - \\(C \cdot \left(\frac{9}{5}\right) + 491.67\\)
+     
+      - \\(Fahrenheit + 459.67\\)
+
+      - \\(Kelvin * 1.8\\)
+
