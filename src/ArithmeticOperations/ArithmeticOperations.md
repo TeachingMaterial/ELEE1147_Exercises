@@ -28,7 +28,7 @@ subtraction, multiplication, and division). Each operation should be in its own 
     - subtract
     - multiply
     - divide
-    - square 
+    - square <p></p>
 
     <details>
     <summary>Possible Solution...</summary>
@@ -76,7 +76,7 @@ subtraction, multiplication, and division). Each operation should be in its own 
     - subtract
     - multiply
     - divide
-    - square 
+    - square <p></p>
 
     <details>
     <summary>Possible Solution</summary>
@@ -113,7 +113,7 @@ subtraction, multiplication, and division). Each operation should be in its own 
 
     </details>
 
-8. Now we need to go back to `ArthimeticOperations.c` and modify the contents so that it `includes` `stdio.h` and `MyMaths.h` and remove the code in side the `main()` block (keeping the `return 0;`), do this now:
+8. Go back to `ArthimeticOperations.c` and modify the contents so that it `includes` `stdio.h` and `MyMaths.h` and remove the code in side the `main()` block (keeping the `return 0;`), do this now:
 
     <details>
     <summary>Possible Solution</summary>
@@ -147,7 +147,7 @@ subtraction, multiplication, and division). Each operation should be in its own 
 
     </details>
 
-10. Using `printf`, request the user to enter two numbers with second number that must be greater than zero. Then using `scanf_s` read what the user inputted and assign those two numbers to `num1` and `num2`.
+10. Using `printf`, request the user to enter two numbers, where second number that must be greater than zero. Then using `scanf_s` read what the user inputted and assign those two numbers to `num1` and `num2`.
 
     <details>
     <summary>Possible Solution</summary>
@@ -191,8 +191,11 @@ subtraction, multiplication, and division). Each operation should be in its own 
 
     </details>
 
-12. **Output:**
+12. **Output:**<p></p>
     ![](./figures/step5.png)
+
+------------------------------
+------------------------------
 
 ## Task 2
 
@@ -202,31 +205,51 @@ Let's further modify the solution so we can do some meaningful programming. In t
     - `TemperatureConversion.h`
     - `TemperatureConversion.c`
 
-14. Open `TemperatureConversion.h` and add a guard
+<div align=center>
+
+![](./figures/step6.png)
+
+</div>
+
+14. Open `TemperatureConversion.h` and add the guard for this file.
+
+    <details>
+    <summary>Possible Solution...</summary>
+
+    ```h
+    #pragma once
+    #ifndef TEMPEATURECONVERSION_H
+    #define TEMPEATURECONVERSION_H
+
+
+    #endif
+    ```
+
+    </details>
 
 15. Inside the block ifndef block define the functions to convert to and from fahrehnhiet, celcius and kelvin, so there should be six functions altogether. The functions should return a `float` and take only one `float` as an argument:
 
-<details>
-<summary>Possible Solution...</summary>
+    <details>
+    <summary>Possible Solution...</summary>
 
-```h
-#pragma once
-#ifndef TEMPEATURECONVERSION_H
-#define TEMPEATURECONVERSION_H
+    ```h
+    #pragma once
+    #ifndef TEMPEATURECONVERSION_H
+    #define TEMPEATURECONVERSION_H
 
-double fahrenheitToCelcius(double fahr);
-double fahrenheitToKelvin(double kel);
+    double fahrenheitToCelcius(double fahr);
+    double fahrenheitToKelvin(double kel);
 
-double celciusToFahrenheit(double cel);
-double celiusToKelvin(double cel);
+    double celciusToFahrenheit(double cel);
+    double celiusToKelvin(double cel);
 
-double kelvinToCelius(double kel);
-double kelvinToFahrenheit(double kel);
+    double kelvinToCelius(double kel);
+    double kelvinToFahrenheit(double kel);
 
-#endif // !TEMPEATURECONVERSION_H
-```
+    #endif // !TEMPEATURECONVERSION_H
+    ```
 
-</details>
+    </details>
 
 16. Next build up the `TempeatureConversion.c` file:
     - include the `TemperatureConversion.h` file
@@ -269,11 +292,11 @@ double kelvinToFahrenheit(double kel);
         return (cel * (9.0 / 5.0))+ 32.0 ;
     }
 
-    double celiusToKelvin(double cel) {
+    double celciusToKelvin(double cel) {
         return (cel + 273.15);
     }
 
-    double kelvinToCelius(double kel) {
+    double kelvinToCelcius(double kel) {
         return (kel - 273.15 );
     }
 
@@ -287,35 +310,38 @@ double kelvinToFahrenheit(double kel);
 
 18. Continuing lets comment out the previously written code for future reference incase we need it. Above the `float num1 = 0.0f, num2 = 0.0f` line add a `/*` place the proceeding `*/` on the last line of code in this block above the `return 0;`
 
-<details>
-<summary>Possible Solution...</summary>
+    <details>
+    <summary>Possible Solution...</summary>
 
-```c
-int main(){
+    ```c
+    #include <stdio.h>
+    #include "MyMaths.h"
+    #include "TemperatureConversion.h"
+    int main(){
 
-    /*
-    float num1 = 0.0f, num2 = 0.0f;
-    printf("Enter two numbers, the second number must not be zero: ");
-    scanf_s("%f %f", &num1, &num2);
-    
-    printf("Additon:     %.2f + %.2f = %.2f\n", num1, num2, add(num1, num2));
-    printf("Subtraction: %.2f - %.2f = %.2f\n", num1, num2, subtract(num1, num2));
-    printf("Multiply:    %.2f * %.2f = %.2f\n", num1, num2, multiply(num1, num2));
-    printf("Divison:     %.2f / %.2f = %.2f\n", num1, num2, divide(num1, num2));
-    printf("squared:     %.2f * %.2f = %.2f\n", num1, num1, square(num1));
-    printf("squared:     %.2f * %.2f = %.2f\n", num2, num2, square(num2));
-    */
-    return 0;
-```
+        /*
+        float num1 = 0.0f, num2 = 0.0f;
+        printf("Enter two numbers, the second number must not be zero: ");
+        scanf_s("%f %f", &num1, &num2);
+        
+        printf("Additon:     %.2f + %.2f = %.2f\n", num1, num2, add(num1, num2));
+        printf("Subtraction: %.2f - %.2f = %.2f\n", num1, num2, subtract(num1, num2));
+        printf("Multiply:    %.2f * %.2f = %.2f\n", num1, num2, multiply(num1, num2));
+        printf("Divison:     %.2f / %.2f = %.2f\n", num1, num2, divide(num1, num2));
+        printf("squared:     %.2f * %.2f = %.2f\n", num1, num1, square(num1));
+        printf("squared:     %.2f * %.2f = %.2f\n", num2, num2, square(num2));
+        */
+        return 0;
+    ```
 
-</details>
+    </details>
 
-19. To use our temperature functions, reproduce the following line and replicate for the other temperature functions. I would suggest starting in the whitespace between `int main(){` and the `/*` line:
+19. To use our temperature functions, reproduce the following line and then replicate for the other temperature functions. I would suggest starting in the whitespace between `int main(){` and the `/*` line:
 
     ```c
     float num1 = 100.0f;
 
-    printf("Fahrenheit to Ceclius: %.2f -> %.2f \n", num1, fahrenheitToCelcius(num1, num2));
+    printf("Fahrenheit to Ceclius: %.2fF -> %.2fC \n", num1, fahrenheitToCelcius(num1));
     ```
 
     >**Note:**
@@ -325,23 +351,26 @@ int main(){
     <summary>Possible Solution</summary>
 
     ```c
+    ...
     int main(){
         float num1 = 100.0f;
 
-        printf("Fahrenheit to Ceclius: %.2f -> %.2f \n", num1, fahrenheitToCelcius(num1, num2));
+        printf("Fahrenheit to Ceclius: %.2fF -> %.2fC \n", num1, fahrenheitToCelcius(num1));
 
-        printf("Fahrenheit to Kelvin: %.2f -> %.2f \n", num1, fahrenheitToKelvin(num1, num2));
+        printf("Fahrenheit to Kelvin: %.2fF -> %.2fK \n", num1, fahrenheitToKelvin(num1));
 
-        printf("Ceclius to Fahrenheit: %.2f -> %.2f \n", num1, celciusTofahrenheit(num1, num2));
+        printf("Ceclius to Fahrenheit: %.2fC -> %.2fF \n", num1, celciusToFahrenheit(num1));
 
-        printf("Ceclius to Kelvin: %.2f -> %.2f \n", num1, celciusToKelivn(num1, num2));
+        printf("Ceclius to Kelvin: %.2fC -> %.2fK \n", num1, celciusToKelvin(num1));
 
-        printf("Kelvin to Farhenheit: %.2f -> %.2f \n", num1, kelvinToFahrenheit(num1, num2));
+        printf("Kelvin to Farhenheit: %.2fK -> %.2fF \n", num1, kelvinToFahrenheit(num1));
 
-        printf("Kelvin to Ceclius: %.2f -> %.2f \n", num1, kelvinToCelcius(num1, num2));
+        printf("Kelvin to Ceclius: %.2fK -> %.2fC \n", num1, kelvinToCelcius(num1));
 
+
+        /*
         ...
-
+        */
         return 0;
     }
     ```
@@ -351,8 +380,15 @@ int main(){
 
     </details>
 
-20. Run the code and you should see the following output?
+20. Run the code and you should see the following output:
 
+    ![](./figures/step7.png)
+
+Congratulations you reached the end of the guided part of the lab, now try and do point 21 below.
+
+
+-------------------------
+-------------------------
 
 21. If you get to here try and modify the code so that you can convert from above temperature units to Rankine and vice versa, the following formulas will help you:
     
@@ -362,9 +398,75 @@ int main(){
       - \\(Kelvin = R \cdot \left(\frac{5}{9}\right)\\)
    
     - ... to Rankine = :
-      - \\(C \cdot \left(\frac{9}{5}\right) + 491.67\\)
+      - \\(Celcius \cdot \left(\frac{9}{5}\right) + 491.67\\)
      
       - \\(Fahrenheit + 459.67\\)
 
-      - \\(Kelvin * 1.8\\)
+      - \\(Kelvin * 1.8\\)<p></p>
 
+    <details>
+    <summary>Output...</summary>
+
+    ![](./figures/step8.png)
+
+    </details> <p></p>
+
+    <details>
+    <summary>Possible Solutions...</summary>
+
+    - **TemperatureConversion.c**
+        ```c
+        double fahrenheitToRankine(double fahr) {
+            return fahr + 459.67;
+        }
+
+        double celciusToRankine(double cel) {
+            return (cel * (9 / 5) + 491.67);
+        }
+
+        double kelvinToRankine(double kel){
+            return kel * 1.8;
+        }
+
+        double rankineToFahrenheit(double ran) {
+            return ran - 459.67;
+        }
+        double rankineToCelcius(double ran){
+            return (ran - 491.67) * (5 / 9);
+
+        }
+        double rankineToKelvin(double ran){
+            return ran * (9 / 5);
+        }
+        ```
+
+    - **TemperatureConversion.h**
+        ```h
+        double fahrenheitToRankine(double fahr);
+        double celciusToRankine(double cel);
+
+        double kelvinToRankine(double kel);
+
+        double rankineToFahrenheit(double ran) ;
+        double rankineToCelcius(double ran);
+        double rankineToKelvin(double ran);
+        ```
+    - **ArithmeticOperations.c**
+        ```c
+        ... 
+        printf("Fahrenheit to Rankine: %.2fF -> %.2fR \n", num1, fahrenheitToRankine(num1));
+        ...
+        printf("Ceclius to Rankine: %.2fC -> %.2fR \n", num1, celciusToRankine(num1))
+        ...
+        printf("Kelvin to Rankine: %.2fK -> %.2fR \n", num1, kelvinToRankine(num1));
+       
+        printf("Rankine to Farhenheit: %.2fR -> %.2fF \n", num1, rankineToFahrenheit(num1));
+
+        printf("Rankine to Ceclius: %.2fR -> %.2fC \n", num1, rankineToCelcius(num1));
+
+        printf("Rankine to Kelvin: %.2fR -> %.2fK \n", num1, rankineToKelvin(num1));
+        ```
+    </details> <p></p>
+
+
+    
