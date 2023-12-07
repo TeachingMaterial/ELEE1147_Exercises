@@ -34,6 +34,12 @@ Recursion consists of **two** main components:
 
 1. Change the extension of the `Factorial.cpp` to `Factorial.c`
 
+    <div align=center>
+
+    ![](./figures/step1.png)
+
+    </div>
+
 2. Reproduce the following:
     ```c
     #include <stdio.h>
@@ -127,8 +133,59 @@ Recursion consists of **two** main components:
     ```
     </details>
 
+8. Run the program and you should see the following:
+
+    <div align=center>
+
+    ![](./figures/step2.png)
+
+    </div>
+
+9. Modifying the factorial function more, you could try and output each result per recursion. Add the following `printf` call in the `else` block above the `return` line:
+
+```c
+printf("%d x %d = %d\n",n, (n-1), n * (n - 1));
+```
+10. Try printing and see what happens?
+
+    <details>
+    <summary>Output</summary>
+
+    ![](./figures/step3.png)
+
+    So why is this happening, the result is 120 but here it would appear that 2,880 = 20 x 12 x 6 x 2
+
+    ```sql
+    Call: factorial(5)
+    |
+    └── Print: 5 x 4 = 20
+    └── Call: factorial(4)
+        |
+        └── Print: 4 x 3 = 12
+        └── Call: factorial(3)
+            |
+            └── Print: 3 x 2 = 6
+            └── Call: factorial(2)
+                |
+                └── Print: 2 x 1 = 2
+                └── Call: factorial(1)
+                |   Base Case: return 1
+                └── Returned: 2 x 1 = 2
+            └── Returned: 3 x 2 = 6
+        └── Returned: 4 x 6 = 24
+    └── Returned: 5 x 24 = 120
+    Final Result: 120
+    ```
+    
+    This diagram shows the sequence of recursive calls and how each call contributes to the final result of 120. The **base case** is reached when *n=1*, and the recursion starts unwinding, multiplying the results as it goes back up the chain of calls. The final result is the product of all the values calculated during the recursion.
+
+    The final result is still 120, but the print statements highlight the individual multiplicative steps in the computation
+
+    </details><p></p>
+
+
 <details>
-<summary>Possible Solution</summary>
+<summary>Code without print statement</summary>
 
 ```c
 #include <stdio.h>
@@ -156,45 +213,201 @@ int factorial(int n) {
 }
 ```
 
-</details>
+</details><p></p>
+
+-----------------------------
+-----------------------------
 
 ## Task 2.
 
-Create a recursive function to generate the *n*th term of the Fibonacci series.
+In this task you will create a recursive function to generate the *n*th term of the Fibonacci series.
 
-C
 <div align=center>
 
-0,1,1,2,3,5,8,13,21,34,…
+0, 1, 1, 2, 3, 5 , 8, 13, 21, 34,…
 
 </div>
 
 Here’s how the sequence progresses:
 
-Start with 0 and 1.
+- Start with 0 and 1.
 
-The next number is 0 + 1 = 1.
-The next number is 1 + 1 = 2.
-The next number is 1 + 2 = 3.
-The next number is 2 + 3 = 5. And so on...
+- The next number is 0 + 1 = 1.
+- The next number is 1 + 1 = 2.
+- The next number is 1 + 2 = 3.
+- The next number is 2 + 3 = 5. And so on...
 
-𝐹(𝑛) = 𝐹(𝑛 − 1) + 𝐹(𝑛 − 2)
+Simplified the formula looks like: 
+
+\\[𝐹(𝑛) = 𝐹(𝑛 − 1) + 𝐹(𝑛 − 2)\\]
+
+11. Modify the `Recursion.c` file so that the `factorial()` call and `printf` statement is commented out:
+
+    ```c
+    ...
+    int main() {
+
+        /*int result = factorial(5);
+        printf("\nFactorial: %d\n", result);  // Output: 120
+        */
+
+        return 0;
+    }
+    ..   
+    ```
+
+12. Declare a new function underneath `int factorial(int n);` called `fibonacci` that returns and takes an integer as an argument:
+
+    <details>
+    <summary>Solution</summary>#
+
+    ```c
+    int fibonacci(int n);
+    ```
+
+    </details>
 
 
+13. Now create the function body underneath the closing brace of `main()`:
 
+    ```c
+    ...
+    int fibonacci(int n){
+        //base case
+        if (n <=1 ){
+            return n;
+        }
+        else{
+            // Recursive case
+            return fibonacci(n -1) + fibonacci(n -2);
+        }
+    }
 
+    int factorial(int n)
+    ...
+    ```
+
+14. Go back to the `main()` function and enter the following:
+
+    ```c
+    int main(){
+
+        int n;
+
+        printf("Enter the value of n: ");
+        scanf_s("%d", &n);
+
+        // check if the input is non-negative
+        if(n < 0){
+            printf("Fibonacci sequence is not defined for negative numbers.");
+        }else{
+            int fibVaule = fibonacci(n - 1);
+            printf("Fibonacci number at position %d is: %llu\n", n, fibValue);
+        }
+
+        ...
+
+        return 0;
+    }
+
+    ```
+
+15. Run the code and supply the 10 as the value for the prompt:
+
+    **Output**
+
+    <div align=center>
+
+    ![](./figures/step4.png)
+
+    </div>
+
+16. Modifying the fibonacci function more, you could try and output each result per recursion. Add the following `printf` call in the `else` block above the `return` line:
+
+```c
+printf("(%d - 1) + (%d - 2) = %d\n", n, n, (n - 1) + (n - 2));
+```
+10. Try running and see what happens?
+
+    <details>
+    <summary>Output...</summary>
+
+    ![](./figures/step5.png)
+
+    Digrammitcally the program the recurison happens like this: 
+
+    
+    ```sql
+    Call: fibonacci(5)
+    |
+    └── Print: (5 - 1) + (5 - 2) = 5
+    └── Call: fibonacci(4)
+        |
+        └── Print: (4 - 1) + (4 - 2) = 5
+        └── Call: fibonacci(3)
+            |
+            └── Print: (3 - 1) + (3 - 2) = 3
+            └── Call: fibonacci(2)
+                |
+                └── Print: (2 - 1) + (2 - 2) = 1
+                └── Call: fibonacci(1)
+                    Base Case: return 1
+                    Returned: 1
+                └── Call: fibonacci(0)
+                    Base Case: return 0
+                    Returned: 0
+                Returned: 1
+            Returned: 2
+        Returned: 3
+    Returned: 5
+    Final Result: Fibonacci number at position 5 is: 5
+    ```
+
+    The textual representation above shows the recursive calls and their relationships for the Fibonacci sequence with `n = 5`. Let's break down the structure and explain each part:
+
+    - **Call: fibonacci(5)**
+        - This is the initial call with \(n = 5\).
+        - It prints the sum of the two preceding Fibonacci numbers for the current level.
+
+    - **Call: fibonacci(4)**
+        - This is a recursive call from the first level with \(n = 4\).
+        - It prints the sum of the two preceding Fibonacci numbers for the current level.
+
+    - **Call: fibonacci(3)**
+        - This is a recursive call from the second level with \(n = 3\).
+        - It prints the sum of the two preceding Fibonacci numbers for the current level.
+
+    - **Call: fibonacci(2)**
+        - This is a recursive call from the third level with \(n = 2\).
+        - It prints the sum of the two preceding Fibonacci numbers for the current level.
+
+    - **Call: fibonacci(1) and fibonacci(0)**
+        - These are base cases, and they don't print the sum.
+        - They return 1 and 0, respectively.
+
+    The diagram shows the hierarchy of recursive calls, where each node represents a call to the `fibonacci` function with a specific value of \(n\). The "Print" lines indicate where the sum is printed. The "Returned" lines indicate the value returned from a particular call.
+
+    The final result is printed at the bottom as "Final Result: Fibonacci number at position 5 is: 5". This is the cumulative result obtained by adding the values returned from the recursive calls.
+
+    This kind of diagram is useful for visualizing the flow of recursive calls and understanding how the function evaluates the Fibonacci sequence for a given input.
+
+    </details><p></p>
 
 ------------------------------
 ------------------------------
 
-The **base case** checks if `n` is `0` or `1`, and `if` `true`, it returns `1`. Otherwise, it makes a recursive call with the argument `n - 1`. The main function demonstrates the usage of the factorial function by calculating the factorial of 5 and printing the result.
+<details>
+<summary>Full Lab code...</summary>
 
 ```c
 #include <stdio.h>
 
+// Function prototype
+int factorial(int n);
 int fibonacci(int c);
+int sizeofthearray(int* arr);
 
-int main(){
+int main() {
 
     int n;
 
@@ -202,23 +415,58 @@ int main(){
     scanf_s("%d", &n);
 
     // check if the input is non-negative
-    if(n < 0){
+    if (n < 0) {
         printf("Fibonacci sequence is not defined for negative numbers.");
-    }else{
-        int fibVaule = fibonacci(n - 1);
+    }
+    else {
+        int fibValue = fibonacci(n - 1);
         printf("Fibonacci number at position %d is: %llu\n", n, fibValue);
     }
 
+    int result = factorial(5);
+    printf("\nFactorial: %d\n", result);  // Output: 120
+    
     return 0;
 }
 
-int fibonacci(int n){
-    if (n <=1 ){
+int sizeofthearray(int* arr)
+{
+    size_t some_array_n = sizeof(arr) / sizeof(arr[0]);
+    printf("Size of array is: %ld", some_array_n);
+}
+
+
+int fibonacci(int n) {
+    //base case
+    if (n <= 1) {
         return n;
     }
-    return fibonacci(n -1) + fibonacci(n -2);
+    else {
+        printf("(%d - 1) + (%d - 2) = %d\n", n, n, (n - 1) + (n - 2));
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+}
+
+
+int factorial(int n) {
+    // Base case
+    if (n == 0 || n == 1) {
+        
+        return 1;
+    }
+    else {
+        // Recursive case
+        printf("%d x %d = %d\n",n, (n-1), n * (n - 1));
+        return n * factorial(n - 1);
+    }
 }
 ```
+
+</details><p></p>
+
+------------------------------
+------------------------------
+
 
 ## Conclusion
 
