@@ -1,4 +1,4 @@
-# Lab n: Bitwise Operations
+# Lab 2: Bitwise Operations
 
 Bitwise operators are tools that operate on individual bits of integers, allowing us to manipulate binary data at the lowest level. In this walkthrough, you'll be guided through the process of crafting a C program that showcases the functionalities of bitwise AND, OR, XOR, and negation operations. These operations provide a powerful mechanism for fine-grained control over bits, which is particularly useful in scenarios where precision at the binary level is required.
 

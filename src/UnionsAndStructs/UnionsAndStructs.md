@@ -230,6 +230,7 @@ In this exercise we are going to explore the difference between and `struct` and
     </details>
 
 >**Notes:**
+>
 >>- A `struct Person` is defined with attributes representing personal information.
 >>- A `union Data` is defined with three members: `integerData`, `floatData`, and `charData`.
 >>- In the `main` function, an instance of both the `struct` and the `union` is created.

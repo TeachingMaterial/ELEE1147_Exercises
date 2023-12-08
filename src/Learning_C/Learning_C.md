@@ -1,4 +1,4 @@
-# Learning C
+# Lab 1: Learning C
 
 We will be doing this lab inconjuction with the C lecture. Key concepts will be explained and you will put into practice.
 
