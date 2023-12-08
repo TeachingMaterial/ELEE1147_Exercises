@@ -148,7 +148,6 @@ In C programming, `scanf_s()` is one of the commonly used function to take input
 
     > Notice, that we have used `&testInteger` inside `scanf_s()`. It is because `&testInteger` gets the address of `testInteger`, and the value entered by the user is stored in that address. We will cover addressing and pointers at a later date.
 
-
 ---
 
 ## 6. Format Specifiers
