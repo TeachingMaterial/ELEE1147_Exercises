@@ -34,6 +34,13 @@ By using header files, we can:
    
 2. Create a new header file in the header folder of the project view as seen below, call it, `myheader.h`
 
+<div align=center>
+
+![](./figures/step1.png)
+![](./figures/step2.png)
+
+</div>
+
 3. Open the newly created header file and add a guard using the the keywords, `#ifndef`, `#define` and `#endif`. In at the end of `#ifndef` and `#define`, write the name of the header file in captial letters, and replace the `.h` with `_h`.
 
     <details>
@@ -73,7 +80,6 @@ By using header files, we can:
 5. Now create the `myheader.c` file that will provide the functionality of the `myheader.h` decalarations. Once created reproduce the following:
 
     ```c
-    
     #include <stdio.h>
     #include "myheader.h"
 
@@ -122,18 +128,20 @@ By using header files, we can:
     **Output:**
     <div align=center>
 
-    ![]()
+    ![](./figures/step3.png)
 
     </div>
 
-9. The guard is important in the header file because during the compiling process their should only be one instance on the header. To demonstrate this, create a new header file called, `noguard.h` and place include `"noguard.h"` in the `myheader.h` file and then `HeadersLab.c`
-
-![]() <!--Image of noguard.h-->
+9. The guard is important in the header file because during the compiling process their should only be one instance on the header. 
+    - To demonstrate this, create remove the guard block from `myheader.h`. 
+    - Then create a new file called `otherfile.c` and  include the `myheader.h` at the top of the script
+  
+    ![](./figures/step4.png) <!--Image of noguard.h-->
 
 10. Run the code and you should see....
 
 
-    ![]() <!--Image of having no guard error-->
+    ![](./figures/step5.png) <!--Image of having no guard error-->
 
     This is because: 
 
@@ -225,7 +233,7 @@ By using header files, we can:
         -----------------------------------------------------------
         ```
 
-11. Remove reference to `noguard.h` from each of the files. 
+11. Add the guard again to `myheader.h`. 
 
 
 ------------------------------
@@ -255,7 +263,7 @@ Common macros, such as `#define PI 3.14`, simplify code maintenance by replacing
 
     int main() {
         
-        printf("PI is: %.5f", PI);
+        printf("PI is: %.5f\n", PI);
         greet();
         
         int result = add(5, 7);
@@ -269,12 +277,13 @@ Common macros, such as `#define PI 3.14`, simplify code maintenance by replacing
 
     **Output**:
 
-    ![]() <!--Output of PI-->
+    ![](./figures/step6.PNG) <!--Output of PI-->
 
 15. Continuing, define a second macro as function that computes the square of a number:
     ```c
     #define SQUARE(x) ((x) * (x))
     ```
+    This function only use 4 Byte values, so anything larger than a `int` would not work. 
 
 16. Inside `main()` call the macro defined function SQAURE inside a printf statement, where the statement outputs the result of the SQUARE and the number being squared:
 
@@ -285,7 +294,7 @@ Common macros, such as `#define PI 3.14`, simplify code maintenance by replacing
 
 17.  Run the program and you should see the following:
 
-![]() <!--Output of programming runnning-->
+     ![](./figures/step7.png) <!--Output of programming runnning-->
 
 18. Laslty we are going to look a very common marco useage implementing debugging. Reproduce the following at the top of the file,above the `#include` directive:
 
@@ -301,27 +310,30 @@ Common macros, such as `#define PI 3.14`, simplify code maintenance by replacing
     ...
     ```
 
-19. `Inside main()` place the wrap the two `printf()` functions for `PI` and `SQUARE` like the following:
+19. `Inside main()` place this `DEBUG_PRINT("This is a debug message");` :
     ```c
-    #ifdef DEBUG_MODE
-    DEBUG_PRINT("This is a debug message");
+    int main() {
+
+    printf("PI is: %.5f\n", PI);
+
     int num = 5;
     printf("The square of %d is: %d\n", num, SQUARE(num));
-    printf("PI is: %.5f", PI);
-    #endif
-    greet();
+
+    DEBUG_PRINT("This is a debug message");
     ...
     ```
 20. If you run this program the you should see the following output:
 
-21. Modify the macro `DEBUG_MODE` to be initialised with `0` instead of `1`, and run the program again.
+    ![](./figures/step8.png)
+
+21. Remove the macro `DEBUG_MODE` and run the program again.
 
     <details>
     <summay></summary>
 
-    ![]()
+    ![](./figures/step9.png)
 
-    This is because `DEBUG_MODE` is no longer true (1) and is now false (0) 
+    This is because `DEBUG_MODE` is no longer defined so the `DEBUG_PRINT()` isn't invoked now.
 
     </details>
 
@@ -335,9 +347,9 @@ Common macros, such as `#define PI 3.14`, simplify code maintenance by replacing
 
 ## Task 3: Advanced Macros
 
-Here you will explore the varadic, Stringification & Token Pasting, Marcros as Data structures, and Guarded Macros for Header Files.
+Here you will explore the varadic, Stringification, Marcros as Data structures, and Guarded Macros for Header Files.
 
-22. Varadic macros extend the function-like macros to handle a variable number of arguments using variadic macros. For example you can create your own macro for `printf`, try the following:
+22. **Varadic** macros extend the function-like macros to handle a variable number of arguments using variadic macros. For example you can create your own macro for `printf`, try the following:
 
     ```c
     // Example of a variadic macro for printing values
@@ -352,6 +364,8 @@ Here you will explore the varadic, Stringification & Token Pasting, Marcros as D
     }
     ```
     **Output**:
+
+    ![](./figures/)
 
     **Explanation of code:**
 
@@ -373,40 +387,21 @@ Here you will explore the varadic, Stringification & Token Pasting, Marcros as D
     ```c
     #define STRINGIFY(x) #x
     ```
-24. Token Pasting (`CONCAT`): 
-    
-    The `CONCAT` macro takes two arguments `a` and `b` and concatenates them to form a single token. The `##` operator is used for token pasting.
-
-    ```c
-    #define CONCAT(a, b) a ## b
-    ```
-25. Reproduce the following:
+24. Reproduce the following:
     
     ```c
     // Example of stringification and token pasting
     #define STRINGIFY(x) #x
-    #define CONCAT(a, b) a ## b
 
     // Usage in a C program
     #include <stdio.h>
 
     int main() {
         printf("Stringified: %s\n", STRINGIFY(Hello));
-        
-        int num = 42;
-        printf("Concatenated: %d\n", CONCAT(num, 3));
-        
+                
         return 0;
     }
     ```
-
-26. Run and see the following the output:
-
-    <div>
-
-    ![]()
-
-    </div>
 
     **Explanation:**
 
@@ -416,23 +411,16 @@ Here you will explore the varadic, Stringification & Token Pasting, Marcros as D
      
       - The `printf` statement prints `"Stringified: Hello\n"` to the console.
 
-    - Token Pasting Example (`CONCAT`):
-      
-      - The macro `CONCAT(num, 3)` concatenates the identifiers `num` and `3` to form a single identifier `num3`.
-      
-      - The `printf` statement prints `"Concatenated: 423\n"` to the console.
-
-    >**Note:**
-    >>These features are useful in advanced macro usage, especially in situations where the names of identifiers need to be dynamically generated or converted into strings during preprocessing.
+25. These features are useful in advanced macro usage, especially in situations where the names of identifiers need to be converted into strings during preprocessing.
 
 -------------------------------
 -------------------------------
 
 ## Task 3: Header Guards with Macros
 
-27. The `mymacros.h` header file below encapsulates commonly used macros for maximum and minimum operations, as well as conditional debugging output. By using include guards, it ensures that the content is included only once in each compilation unit, avoiding redefinition issues. This header file can be included in C programs that require these macros for enhanced functionality and debugging capabilities.
+26. The `mymacros.h` header file below encapsulates commonly used macros for maximum and minimum operations, as well as conditional debugging output. By using include guards, it ensures that the content is included only once in each compilation unit, avoiding redefinition issues. This header file can be included in C programs that require these macros for enhanced functionality and debugging capabilities.
 
-28. You would `#include "mymacros_h"` in your file with `main()` and then #define DEBUG_MODE with 0 or 1, you can then access those functions.
+27. You would `#include "mymacros_h"` in your file with `main()` and then #define DEBUG_MODE with 0 or 1, you can then access those functions.
 
     ```C
     // Example of header file with guarded macros
@@ -451,7 +439,7 @@ Here you will explore the varadic, Stringification & Token Pasting, Marcros as D
     #endif // MYMACROS_H
     ```
 
-29. Try and do this now.
+28. Try and do this now.
 
 
 ----------------------------------
@@ -459,7 +447,7 @@ Here you will explore the varadic, Stringification & Token Pasting, Marcros as D
 
 ## Task 4 Macros in Data Structures:
 
-30. The code below is an example of using macros to define a *generic structure* for a linked list node in C. This allows you to create linked lists for different data types using the same basic structure **template**. 
+29. The code below is an example of using macros to define a *generic structure* for a linked list node in C. This allows you to create linked lists for different data types using the same basic structure **template**. 
 
     ```c
     // Example of macros for a linked list
@@ -479,7 +467,7 @@ Here you will explore the varadic, Stringification & Token Pasting, Marcros as D
         - The type parameter allows the user to specify the data type of the elements that the linked list will store.
         - The `##` operator concatenates the type with the `"_Node"` suffix to form the structure name
 
-31. The `main()` function below,
+30. The `main()` function below,
     
     ```c
     #include <stdio.h>
@@ -504,7 +492,7 @@ Here you will explore the varadic, Stringification & Token Pasting, Marcros as D
 
     - The program prints the data value of the node, which is `42`, to the console.
 
-32. Reproducing the following and try with `int`, `float`, `double`, `char`:
+31. Reproducing the following and try with `int`, `float`, `double`, `char`:
     ```c
     // Example of macros for a linked list
     #define DECLARE_NODE_TYPE(type) \
@@ -528,6 +516,12 @@ Here you will explore the varadic, Stringification & Token Pasting, Marcros as D
         return 0;
     }
     ```
+
+32. Run the code to see the output: 
+
+    ![](./figures/step11.png)
+
+33. Modify and make a declare a node type as type `float`, and run again.
 
 ## Benefits: 
 
