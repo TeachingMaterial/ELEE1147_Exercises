@@ -44,11 +44,8 @@ Every variable is a memory location and every memory location has its address de
     <summary><b>Click for Expected Output</b></summary>
     <p></p>
 
-    ```
-    Address for the variable a: 140729126914124 
-    Address for the variable b: 140729126914128
-    Address for the variable c: 140729126914132 
-    ```
+    ![](./figures/step1.png)
+
     </details>
 
 
@@ -63,6 +60,8 @@ Every variable is a memory location and every memory location has its address de
 
     <details>
     <summary>Well...</summary>
+
+     ![](./figures/step2.png)
 
     You should have recieved different memory address locations, this because of the **Address Space Layout Randomiser** (ASLR) which provides a random address space for security reason. Consider if someone wanted to get certain information and new where it was stored all the time?
 
@@ -88,7 +87,11 @@ The actual data type of the value of all pointers, whether integer, float, chara
 
 ## Section 3: How to Use Pointers?
 
-There are a few important operations, which we will do with the help of pointers very frequently. **(a)** We define a pointer variable, **(b)** assign the address of a variable to a pointer and **(c)** finally access the value at the address available in the pointer variable. 
+There are a few important operations, which we will do with the help of pointers very frequently:
+
+- **(a)** We define a pointer variable,
+- **(b)** assign the address of a variable to a pointer, and 
+- **(c)** finally access the value at the address available in the pointer variable. 
 
 This is done by using unary operator `*` that returns the value of the variable located at the address specified by its operand. The following example makes use of these operations.
 
@@ -125,12 +128,8 @@ This is done by using unary operator `*` that returns the value of the variable 
     <summary><b>Click for Expected Output</b></summary>
     <p></p>
 
-    ```sh
-    Address of A variable: 140720967560444
-    Address stored in pointerToA variable: 140720967560444
-    Value of *pointerToA variable: 15
-    Address of pointerToA: 140720967560448
-    ```
+    ![](./figures/step3.png)
+
     </details>
 
 ----
@@ -164,9 +163,7 @@ The `NULL pointer` is a constant with a value of zero defined in several standar
     <summary><b>Click for Expected Output</b></summary>
     <p></p>
 
-    ```
-    The value of ptr is : (nil)
-    ```
+    ![](./figures/step4.png)
 
     </details>
 
@@ -271,23 +268,23 @@ Modify `main()` with the following code snippets, remember to include the `#incl
     ```c
     #include <stdio.h>
     int main () {
-        // define your variables in this region 
+       // define your variables in this region 
         int bin = 10;
         int value = 123456789;
         // end of variabl region
-        
+
         // create a pointer here
         int* pointer = (&value);
         // end of pointer region
         
-        printf("Memory Address        ||    Value        \n");
-        printf("------------------------------------------\n");
-        
+        printf("Memory Address||    Value (normal)       ||           Value(Hex)   \n");
+        printf("-----------------------------------------------------------\n");
+
         // put the `for` loop here
         for (int i = 0; i < bin; ++i)
-        {   
-            printf(" %lu      ||    %d \t\t \n",(unsigned long)pointer,(unsigned int)*pointer); 
-            pointer = pointer-1;
+        {
+            printf(" %x     ||     %u     ||    %p \t\t \n", (unsigned long)pointer, (unsigned int)*pointer, (unsigned int)*pointer);
+            pointer = pointer - 1;
         }
         // end of for loop
         return 0;
@@ -302,24 +299,14 @@ Modify `main()` with the following code snippets, remember to include the `#incl
     <details>
     <summary><b>Click for Expected Output</b></summary>
     <p></p>
+    
+    ![](./figures/step5.png)
 
-        Memory Address       ||    Value        
-        ------------------------------------------
-        140732118813652      ||    123456789 		 
-        140732118813648      ||    0 		 
-        140732118813644      ||    32582 		 
-        140732118813640      ||    1938514379 		 
-        140732118813636      ||    0 		 
-        140732118813632      ||    2 		 
-        140732118813628      ||    21928 		 
-        140732118813624      ||    1008046784 		 
-        140732118813620      ||    21928 		 
-        140732118813616      ||    999510800 		 
     </details>
 
     >**Note:**
     >
-    >> Remember you will get different memory address and other than the `123456789` value the rest of the values will be different.
+    >> Remember you will get different memory address and other than the `123456789` value the rest of the values are generally nonsense, unless they are used by the program.
 
 
    - Now that the script has executed you can see we have a list of 10 memory addresses and the values those address hold.
@@ -374,29 +361,7 @@ The `C` programming language can store arrays of any data type; `int`, `float`, 
     <summary><b>Click for Expected Output</b></summary>
     <p></p>
 
-    ```
-    Printing elements of 1-D array: 
-
-    h e l l o   w o r l d 
-
-    Now what is the memory location for each index and the array itself: 
-
-        Memory Address (HEX)  ||  Element        Value
-    ----------------------------------------------------
-        0x7ffc2407ce9d      ||   ptr[0]    =    h
-        0x7ffc2407ce9e      ||   ptr[1]    =    e
-        0x7ffc2407ce9f      ||   ptr[2]    =    l
-        0x7ffc2407cea0      ||   ptr[3]    =    l
-        0x7ffc2407cea1      ||   ptr[4]    =    o
-        0x7ffc2407cea2      ||   ptr[5]    =     
-        0x7ffc2407cea3      ||   ptr[6]    =    w
-        0x7ffc2407cea4      ||   ptr[7]    =    o
-        0x7ffc2407cea5      ||   ptr[8]    =    r
-        0x7ffc2407cea6      ||   ptr[9]    =    l
-        0x7ffc2407cea7      ||   ptr[10]   =    d
-    ----------------------------------------------------
-    0x7ffc2407ce9d      ||   ptr[]     =  h (this is the array's address too!) 
-    ```
+    ![](./figures/step6.png)
 
     </details>
 
@@ -477,7 +442,7 @@ This statement frees the space allocated in the memory pointed by `ptr`.
     int n, i, *ptr, sum = 0;
 
     printf("Enter number of elements: ");
-    scanf("%d", &n);
+    scanf_s("%d", &n);
 
     ptr = (int*) malloc(n * sizeof(int));
     
@@ -487,9 +452,9 @@ This statement frees the space allocated in the memory pointed by `ptr`.
         exit(0);
     }
 
-    printf("Enter elements: ");
+    printf("Enter elements per line: ");
     for(i = 0; i < n; ++i) {
-        scanf("%d", ptr + i);
+        scanf_s("%d", ptr + i);
         sum += *(ptr + i);
     }
 
@@ -509,13 +474,8 @@ This statement frees the space allocated in the memory pointed by `ptr`.
     <details>
     <summary>Output...</summary>
 
-        ```
-        Enter number of elements: 3
-        Enter elements: 100
-        20
-        36
-        Sum = 156
-        ```
+    ![](./figures/step7.png)
+
     </details>
 
 ### Example 2:
@@ -554,13 +514,13 @@ This statement frees the space allocated in the memory pointed by `ptr`.
 
 13. Now, run the code and you should see the following output, remember to enter a number equal to or greater than zero:
 
-    ```
-    Enter number of elements: 3
-    Enter elements: 100
-    20
-    36
-    Sum = 156
-    ```
+    <details>
+    <summary>Output...</summary>
+
+    ![](./figures/step8.png)
+
+    </details>
+
 
 ### Subsection 7.4: `realloc()`
 
@@ -609,20 +569,13 @@ Here, `ptr` is reallocated with a new size `x`.
 
 15. Run the program and remeber the enter a number equal to or greater than zero:
 
-    ```
-    Enter size: 2
-    Addresses of previously allocated memory:
-    26855472
-    26855476
 
-    Enter the new size: 4
-    Addresses of newly allocated memory:
-    26855472
-    26855476
-    26855480
-    26855484
-    ```
+    <details>
+    <summary>Output...</summary>
 
+    ![](./figures/step9.png)
+
+    </details>
 
 ## Section 8: Memory Allocations (System Calls)
 
@@ -641,62 +594,6 @@ Here is the graphic for memory allocation that we looked at the in the lecture, 
 ![](./figures/process_memory_application_graphic)
 
 
-### Subsection 8.1: The First System Call: `brk()`
-
-- Each process has a contiguous data field. With the `brk()`system call, the program break value, which determines the limit of the data field, is increased and the allocation process is performed.
-
-- Although memory allocation with this method is very fast, it is not always possible to return unused space to the system.
-
-- For example, consider that you allocate five fields, each 16KB in size, with the brk system call via the `malloc()` function. When you are done with number two of these fields, it is not possible to return the relevant resource (deallocation) so that the system can use it. Because if you reduce the address value to show the place where your field number two starts, with a call to `brk()`, you will have done deallocation for fields numbers three, four, and five.
-
-- To prevent memory loss in this scenario, the `malloc()` implementation in glibc monitors the places allocated in the process data field and then specifies to return it to the system with the `free()` function, so that the system can use the free space for further memory allocations.
-
-- In other words, after five 16KB areas are allocated, if the second area is returned with the `free()` function and another 16KB area is requested again after a while, instead of enlarging the data area through the `brk()` system call, the previous address is returned.
-
-- However, if the newly requested area is larger than 16KB, then the data area will be enlarged by allocating a new area with the `brk()` system call since area two cannot be used. Although area number two is not in use, the application can't use it because of the size difference. Because of scenarios like this, there is a situation called internal fragmentation, and in fact, you can rarely use all parts of the memory to the fullest.
-
-16. For better understanding, modify `main()` and try running the following sample application:
-
-    ```c
-    #include <stdio.h>
-    #include <stdlib.h>
-    #include <unistd.h> /*for system calls, sbrk*/
-
-    int main(int argc, char* argv[]) /* an array of inputs*/
-    {
-        char *ptr[7];
-        int n;
-        // pid is the process ID, every process has an ID. 
-        // argv[0] is always the name of the file being run...
-        printf("\nPid of %s: %d", argv[0], getpid());
-        printf("Initial program break   : %p", sbrk(0));
-        for(n=0; n<5; n++) ptr[n] = malloc(16 * 1024);
-        printf("After 5 x 16kB malloc   : %p", sbrk(0));
-        free(ptr[1]);
-        printf("After free of second 16kB       : %p", sbrk(0));
-        ptr[5] = malloc(16 * 1024);
-        printf("After allocating 6th of 16kB    : %p", sbrk(0));
-        free(ptr[5]);
-        printf("After freeing last block        : %p", sbrk(0));
-        ptr[6] = malloc(18 * 1024);
-        printf("After allocating a new 18kB     : %p", sbrk(0));
-        getchar();
-        return 0;
-    }
-    ```
-
-17. When you run the application you will get a result similar to the following output:
-
-```
-Pid of ./systemCallMemoryAllocation.exe: 31990
-0Initial program break   : 0x55ebcadf4000
-After 5 x 16kB malloc   : 0x55ebcadf4000
-After free of second 16kB       : 0x55ebcadf4000
-After allocating 6th of 16kB    : 0x55ebcadf4000
-After freeing last block        : 0x55ebcadf4000
-After allocating a new 18kB     : 0x55ebcadf4000
-```
-
 ## Section 9: Extra work
 
-Combine what you have learnt in this lab advance your understanding of what you have achieved. 
+Combine what you have learnt in this lab to advance your understanding of what you have achieved. 
