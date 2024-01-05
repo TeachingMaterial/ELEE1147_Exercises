@@ -3,6 +3,8 @@
 
 ## Task 1. 
 
+<a href="docs/html/index.html" target="_blank">Output</a>
+
 Using Doxygen or ... we can increase readibility and reusability of the code.  
 
 1. Create a new project in `C++`, name the project Documentation and then remember to rename the program file, `Documentation.cpp` to `Documentation.c`.
