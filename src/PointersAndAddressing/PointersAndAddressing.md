@@ -21,7 +21,7 @@ Now it's time to see the why C is used for the basis of nearly all programming l
 
 Pointers in C are relativley easy and fun to learn. Some C programming tasks are performed more easily with pointers, and other tasks, such as dynamic memory allocation, cannot be performed without using pointers. 
 
-So it becomes necessary to learn pointers to become a perfect C programmer.
+Therefore it is necessary to learn pointers to become a perfect C programmer.
 
 Let's start learning them in simple and easy steps.
 
@@ -39,7 +39,9 @@ Every variable is a memory location and every memory location has its address de
         return 0;
     }
     ```
-
+    
+    >Note: the `...` in the code blocks means that there is code above or below that remains the same.
+    
     <details>
     <summary><b>Click for Expected Output</b></summary>
     <p></p>
@@ -87,9 +89,9 @@ The actual data type of the value of all pointers, whether integer, float, chara
 
 ## Section 3: How to Use Pointers?
 
-There are a few important operations, which we will do with the help of pointers very frequently:
+To use the pointer, a C language feature, you must do the following steps:
 
-- **(a)** We define a pointer variable,
+- **(a)** define a pointer variable,
 - **(b)** assign the address of a variable to a pointer, and 
 - **(c)** finally access the value at the address available in the pointer variable. 
 
