@@ -348,7 +348,7 @@ Common macros, such as `#define PI 3.14`, simplify code maintenance by replacing
 
 Here you will explore the varadic, Stringification, Marcros as Data structures, and Guarded Macros for Header Files.
 
-22. **Varadic** macros extend the function-like macros to handle a variable number of arguments using variadic macros. For example you can create your own macro for `printf`, try the following:
+22. **Variadic** macros extend the function-like macros to handle a variable number of arguments using variadic macros. For example you can create your own macro for `printf`, try the following:
 
     ```c
     // Example of a variadic macro for printing values
