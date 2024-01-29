@@ -113,7 +113,7 @@ Objective: Explore the concept of unions and their applications in C.
         void printData(union Data d) {
             printf("Data: ");
             printf("%d (Integer)\n", d.integerData);
-            printf("%d (Float)\n", d.floatData);
+            printf("%f (Float)\n", d.floatData);
            
         }
 
