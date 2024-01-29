@@ -1,4 +1,17 @@
-# Lab n: Unions and Structs
+# Lab 7: Unions and Structs
+
+ - You need to open a new Visual Studio C++ Console Application, give it a meaningful name. 
+ - Remember to modify the file extension to `projectName.c` from `projectName.cpp`
+ - Ensure the `projectName.c` file has the following structure:
+ - ```c
+   #include <stdio.h>
+
+   int main(){
+
+
+       return 0;
+   }
+   ```
 
 ## Exercise 1: Structs
 
@@ -355,4 +368,4 @@ Objective: Understand how structs and unions can be combined for more complex da
 ---------------------------------------
 
 ## Conclusion:
-This lab covers the basics of using `structs` and `unions` in `C`. It helps in understanding how to define, initialise, and manipulate data using these fundamental concepts. Additionally, the challenges provide opportunities to extend and apply the knowledge gained during the exercises.
+This lab covers the basics of using `structs` and `unions` in `C`. It helps in understanding how to define, initialise, and manipulate data using these fundamental concepts. Additionally, provides key knowledge and skills for the assignment.
