@@ -104,7 +104,6 @@ Objective: Explore the concept of unions and their applications in C.
         union Data {
             int integerData; ///< Integer data.
             float floatData; ///< Float data.
-            char charData;   ///< Character data.
         };
 
         /**
@@ -113,13 +112,9 @@ Objective: Explore the concept of unions and their applications in C.
         */
         void printData(union Data d) {
             printf("Data: ");
-            if (d.integerData) {
-                printf("%d (Integer)\n", d.integerData);
-            } else if (d.floatData) {
-                printf("%.2f (Float)\n", d.floatData);
-            } else {
-                printf("%c (Character)\n", d.charData);
-            }
+            printf("%d (Integer)\n", d.integerData);
+            printf("%d (Float)\n", d.floatData);
+           
         }
 
         /**
@@ -128,7 +123,7 @@ Objective: Explore the concept of unions and their applications in C.
         int main() {
             // Create an instance of Data, assign values, and print details
             union Data data1;
-            data1.integerData = 42;
+            data1.floatData = 123.45f;
             printData(data1);
 
             return 0;
