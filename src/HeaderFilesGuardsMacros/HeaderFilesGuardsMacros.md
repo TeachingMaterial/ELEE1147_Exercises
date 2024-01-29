@@ -1,4 +1,4 @@
-# Lab 3: Header Files, Header Guards, and Macros in C
+# Lab 5: Header Files, Header Guards, and Macros in C
 
 In this lab, we'll explore key concepts in C programming that enhance code organization and reusability.
 

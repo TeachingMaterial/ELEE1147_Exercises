@@ -1,4 +1,4 @@
-# Lab n: Recursion
+# Lab 4: Recursion
 
 Recursion is a programming concept where a function calls itself in its own definition. In other words, a recursive function is a function that solves a problem by solving smaller instances of the same problem. This process continues until a **base case** is reached, at which point the function **returns** a result without making a recursive call.
 

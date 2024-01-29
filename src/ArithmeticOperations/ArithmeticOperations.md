@@ -1,4 +1,4 @@
-# Lab n:  Arithmetic Operations
+# Lab 3:  Arithmetic Operations
 
 ## Task 1
 
