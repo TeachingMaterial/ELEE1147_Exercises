@@ -229,7 +229,7 @@ In this exercise we are going to explore the difference between and `struct` and
 
         // Demonstrate the size difference between struct and union
         printf("Size of Struct (Person): %lu bytes\n", sizeof(struct Person));
-        printf("Size of Union (Data): %lu bytes\n", sizeof(union Data));
+        printf("Size of Union (Data): %llu bytes\n", sizeof(union Data));
 
         return 0;
     }
