@@ -1,4 +1,4 @@
-- [Introduction](Introduction.md)
+[**Introduction**](Introduction.md)
 -------------------------------------
 - [Learning C](Learning_C/Learning_C.md)
 - [Bitewise Operations](BitwiseOperations/BitwiseOperations.md)
