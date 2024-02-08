@@ -9,6 +9,6 @@
 - [Pointers and Addressing](PointersAndAddressing/PointersAndAddressing.md)
 - [Structs and Unions](UnionsAndStructs/UnionsAndStructs.md)
 - [Streams](Streams/Streams.md)
-- [Algorithms]()
+- [Algorithms](Algorithms/Algorithms.md)
 - [Code Conventions]()
 - [Documentation]()

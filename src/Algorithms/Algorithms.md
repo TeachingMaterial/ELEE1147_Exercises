@@ -1,4 +1,4 @@
-## Lab N: Algorithms 
+## Lab 9: Algorithms 
 
 - Linear Search Example, $O(n)$
 
@@ -8,10 +8,15 @@
 
 - 
 
+> Note: 
+>> - All timings are based on an 11th Gen Intel Core i5-11500 @ 2.70GHz 6 Cores.
+>> - The C library function `clock_t clock(void)` returns the number of `clock ticks` elapsed since the program was launched. To get the number of seconds used by the CPU, you will need to divide by `CLOCKS_PER_SEC`, which will be implemented in `main()`.
 
 ## Merge Sort Algorithm \\(O(n\ log\ n)\\): 
 
-Begin by creating a header and C file `MergeSort.h` and `MergeSort.c`. 
+1. Create a new C++ Console Application call it `Algorithms`. Remember to modify the `Algorithms.cpp` so that it is a c file `Algorithms.c`
+
+2. Creat a header and C file called `Sort.h` and `Sort.c`. 
 
 The algorithm works by first: 
 
@@ -25,7 +30,7 @@ The algorithm works by first:
 
 As you can probably tell, the main process in a quicksort algorithm is the partitioning phase.
 
-We are going to sort some heights of various people.
+We are going to sort some heights of various people: `int array1[] = {90, 65, 70, 55, 60, 80};`
 
 To achieve our goal, we'll start by picking one kid, and we'll make them our pivot.
 
@@ -43,94 +48,118 @@ The net result is that we've now partially sorted our kids even more.
 
 And as you've probably guessed, we'll keep repeating this process until all the kids are fully sorted by height.
 
-**Step 1. Reproduce the following code in `MergeSort.h`:**
+3. Reproduce the following code in `Sort.h`:
 
-```c
-#param
-#ifndef MYHEADER_H
-#define MYHEADER_H
+    ```c
+    #pragma once
+    #ifndef SORT_H
+    #define SORT_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <time.h>
 
-void quicksortMiddle(int arr[], int low, int high);
+    void quicksortMiddle(int arr[], int low, int high);
 
-void printArray(int arr[], int size);
-#endif // MYHEADER_H
-```
+    void printArray(int arr[], int size);
+    #endif // SORT_H
+    ```
+4. Reproduce the following code in `Sort.c`:
 
-**Step 2. Reproduce the following code in `MergeSort.c`:**
+    ```c
+    #include "Sort.h"
 
-<details>
-<summary>Code here...</summary>
+    void quicksortMiddle(int arr[], int low, int high) {
+        if (low < high) {
+            int pivot = arr[(low + high) / 2]; // Selecting the middle element as the pivot
+            int i = low;
+            int j = high;
+            int temp;
 
-```c
-void quicksortMiddle(int arr[], int low, int high) {
-    if (low < high) {
-        int pivot = arr[(low + high) / 2]; // Selecting the middle element as the pivot
-        int i = low;
-        int j = high;
-        int temp;
+            while (i <= j) {
+                while (arr[i] < pivot) i++; // Moving elements smaller than pivot to the left
+                while (arr[j] > pivot) j--; // Moving elements greater than pivot to the right
 
-        while (i <= j) {
-            while (arr[i] < pivot) i++; // Moving elements smaller than pivot to the left
-            while (arr[j] > pivot) j--; // Moving elements greater than pivot to the right
-
-            if (i <= j) {
-                temp = arr[i];         // Swapping elements
-                arr[i] = arr[j];
-                arr[j] = temp;
-                i++;
-                j--;
+                if (i <= j) {
+                    temp = arr[i];         // Swapping elements
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                    i++;
+                    j--;
+                }
             }
+
+            // Recursively sort the two partitions
+            if (low < j) quicksortMiddle(arr, low, j);
+            if (i < high) quicksortMiddle(arr, i, high);
         }
-
-        // Recursively sort the two partitions
-        if (low < j) quicksortMiddle(arr, low, j);
-        if (i < high) quicksortMiddle(arr, i, high);
     }
-}
 
-// Utility function to print array
-void printArray(int arr[], int size)
-{
-    for (int i = 0; i < size; i++)
+    // Utility function to print array
+    void printArray(int arr[], int size)
     {
-        printf("%d ", arr[i]);
+        for (int i = 0; i < size; i++)
+        {
+            printf("%d ", arr[i]);
+        }
+        printf("\n");
     }
-    printf("\n");
-}
-```
-</details>
+    ```
 
-**Step 3. Revisit `Algorithms.c` modify the code to include the following:**
+5. `Algorithms.c` modify the code to include the following:
 
 ```c
+#include <stdio.h>
+#include <time.h>
 int main()
 {
 
-    ... 
-
-    int array1[] = {90, 65, 70, 55, 60, 80};
-    int n = sizeof(array1) / sizeof(array1[0]);
+    int array1[] = {90, 65, 70, 55, 60, 80}; // partially sorted array of heights
+    
+    int n = sizeof(array1) / sizeof(array1[0]); // get the middle of the array
 
     printf("Original Array: \n");
     printArray(array1, n);
 
-    // Using the Middle Element as Pivot
-    clock_t start, end;
+    clock_t start, end; // Set up variables to time the algorithm
     double cpu_time_used;
-    start = clock();
-        
-    quicksortMiddle(array1, 0, n - 1);
-    end = clock();
-    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    start = clock(); // start the timer
     
+    
+    for (int i = 0; i < 10000000; i++) {
+        // Using the Middle Element as Pivot    
+        quicksortMiddle(array1, 0, n - 1);
+    }
+
+    end = clock(); // end the timer
+    cpu_time_used = ((double)((double)end - (double)start)) / CLOCKS_PER_SEC; // calculate the time taken
+
     printf("Sorted with Middle Element as Pivot:\n");
     printArray(array1, n);
-    printf("Time taken: %f",cpu_time_used);2
+    printf("Time taken: %lf", cpu_time_used); 
 
     return 0;
 }
 ```
+
+Output: 
+
+![](./figures/mergesort.png)
+
+Timing:  0.331000/10,000,000 = 33.1*10^-8 =  33.1ns on an 
+
+ Quick Sort 
+
+![](./figures/quick_sort.gif)
+
+Bubble Sort
+
+![](./figures/bubble_sort.gif)
+
+Selection Sort
+
+![](./figures/selection_sort.gif)
+
+Insertion Sort
+
+![](./figures/insertion_sort.gif)
