@@ -1,6 +1,6 @@
 ## Lab 9: Algorithms 
 
-- Quick sort Example, \\( O(n log n)\\)
+- Quick sort Example, \\( O(n\ log\ n)\\)
 
 - Bubble sort Example, \\( O(n^2)\\)
 
@@ -21,7 +21,7 @@ In this lab we are going to explore various sorting algorithms sorting a small d
 
 ## Quick Sort Algorithm \\(O(n\ log\ n)\\): 
 
-1. Create a new C++ Console Application call it `Algorithms`. Remember to modify the `Algorithms.cpp` so that it is a c file `Algorithms.c`
+1. Create a new C++ Console Application call it `SortingAlgorithms`. Remember to modify the `SortingAlgorithms.cpp` so that it is a c file `SortingAlgorithms.c`
 
 2. Creat a header and C file called `Sort.h` and `Sort.c`. 
 
@@ -94,7 +94,7 @@ In this lab we are going to explore various sorting algorithms sorting a small d
     }
     ```
 
-5. Now you have the first sorting algorithm is set up we need get the `Algorithms.c` file ready to invoke the sorting function and calcualte the how long it took. Modify the code, `Algorithms.c`, to include the following, pay close attention to the comments as they provide verbose guidance:
+5. Now you have the first sorting algorithm is set up we need get the `SortingAlgorithms.c` file ready to invoke the sorting function and calcualte the how long it took. Modify the code, `SortingAlgorithms.c`, to include the following, pay close attention to the comments as they provide verbose guidance:
 
     ```c
     #include "Sort.h"
@@ -130,7 +130,7 @@ In this lab we are going to explore various sorting algorithms sorting a small d
         return 0;
     }
     ```
-6. If you have reproduce the above you should see the following output:
+6. If you have reproduce the above you should see the following output when you run the program:
 
     ![](./figures/quicksort.png)
     
@@ -162,10 +162,54 @@ The Bubble sort works by repeatedly stepping through the list to be sorted, comp
 
   - Bubble sort works by "bubbling" the largest elements to the end of the array in each pass, hence its name.
 
-1. To implement the bubble sort algorithm, revist the Sort.h and add the prototype `void bubblesort(int )`
+1. To implement the bubble sort algorithm, revist the `Sort.h` and add the prototype `void bubblesort(int arr[], int n)`
+
+2. Next open the `Sort.c` file and add the `bubblesort()` functionality, place the following between the two functions, `quicksortMiddle()`, `printArray()`:
+
+    ```c
+    void quicksortMiddle(int arr[], int low, int high) { 
+        ...
+    }
+
+    void bubbleSort(int arr[], int n) {
+        // Outer loop to traverse the array from the beginning to the second-to-last element
+        for (int i = 0; i < n - 1; ++i) {
+            // Inner loop to compare adjacent elements and perform swaps
+            // The loop runs from the beginning to (n - i - 1) to avoid unnecessary comparisons
+            for (int j = 0; j < n - i - 1; ++j) {
+                // If the current element is greater than the next element, swap them
+                if (arr[j] > arr[j + 1]) {
+                    // Swap arr[j] and arr[j+1]
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    void printArray(int arr[], int size) ...
+    ```
+3. Like before we need to invoke the `bubblesort()` in the `main()`, you'll pleased to note we are adding one line, and commenting another, go back to `SortingAlgorithms.c`:
+
+    ```c
+    int main()
+    {
+      ...
+
+        for (int i = 0; i < 10000000; i++) {
+        // Using the Middle Element as Pivot    
+        // quicksortMiddle(array1, 0, n - 1);
+
+           bubbleSort(array1, n);
+    
+        }
+      ...
+    }
+    ```
 
 
-6. If you have reproduce the above you should see the following output:
+4. If you have reproduce the above you should see the following output when you run the program:
 
     ![](./figures/bubblesort.png)
     
@@ -175,7 +219,7 @@ The Bubble sort works by repeatedly stepping through the list to be sorted, comp
   
     - Timing:  \\[33.2ns \equiv 33.2 \cdot 10^{-8} =  \frac{332 \cdot 10^{-3}}{10 \cdot 10^6}  \leftarrow \frac{0.332000}{10000000}\\]
 
-7. The graphic below illustrates how the sorting was performed: 
+5. The graphic below illustrates how the sorting was performed: 
 
     ![](./figures/bubble_sort.gif)
 
@@ -199,9 +243,61 @@ Selection sort works by repeatedly finding the minimum element from the unsorted
   
   - Selection sort is called "selection" because it repeatedly selects the smallest (or largest, depending on the sorting order) element and moves it to its correct position.
 
-1. To implement the bubble sort algorithm, revist the Sort.h and add the prototype `void selectionsort(int )`
+1. To implement the bubble sort algorithm, revist the `Sort.h` and add the prototype `void selectionsort(int arr[], int n)`
 
-6. If you have reproduce the above you should see the following output:
+2. Next open the `Sort.c` file and add the `selectionsort()` functionality, place the following between the two functions, `bubblesort()`, `printArray()`:
+
+    ```c
+    ...
+    void bubblesort(nt arr[], int n){
+        ...
+    }
+
+    // Function to perform selection sort on an array
+    void selectionSort(int arr[], int n) {
+        // Outer loop to traverse the array from the beginning to the second-to-last element
+        for (int i = 0; i < n - 1; ++i) {
+            // Assume the current index is the index of the minimum element
+            int min_idx = i;
+            // Inner loop to find the index of the minimum element in the unsorted portion of the array
+            for (int j = i + 1; j < n; ++j) {
+                // If the current element is less than the element at the assumed minimum index,
+                // update the minimum index to the current index
+                if (arr[j] < arr[min_idx]) {
+                    min_idx = j;
+                }
+            }
+            // Swap the element at the current index with the element at the minimum index
+            int temp = arr[i];
+            arr[i] = arr[min_idx];
+            arr[min_idx] = temp;
+        }
+    }
+
+    void printArray(int arr[], int size) ...
+    ```
+
+3. Like before we need to invoke the `selectionSort()` in the `main()`, you'll pleased to note we are adding one line, and commenting another, go back to `SortingAlgorithms.c`:
+
+    ```c
+    int main()
+    {
+      ...
+
+        for (int i = 0; i < 10000000; i++) {
+        // Using the Middle Element as Pivot    
+        // quicksortMiddle(array1, 0, n - 1);
+
+        // bubbleSort(array1, n);
+
+           selectionSort(array1, n);
+
+        }
+      ...
+    }
+    ```
+
+4. If you have reproduce the above you should see the following output when you run the program:
 
     ![](./figures/selectionsort.png)
     
@@ -211,7 +307,7 @@ Selection sort works by repeatedly finding the minimum element from the unsorted
   
     - Timing:  \\[46.4ns \equiv 46.4 \cdot 10^{-8} =  \frac{464 \cdot 10^{-3}}{10 \cdot 10^6}  \leftarrow \frac{0.464000}{10000000}\\]
 
-7. The graphic below illustrates how the sorting was performed: 
+5. The graphic below illustrates how the sorting was performed: 
 
     ![](./figures/selection_sort.gif)
 
@@ -236,9 +332,59 @@ Insertion sort works by building a sorted array one element at a time by repeate
   
 - Insertion sort is like sorting a hand of cards: you pick up one card at a time and insert it into its correct position among the cards you're already holding.
 
-1. To implement the bubble sort algorithm, revist the Sort.h and add the prototype `void insertionsort(int )`
+1. To implement the bubble sort algorithm, revist the Sort.h and add the prototype `void insertionsort(int arr[], int n)`.
 
-6. If you have reproduce the above you should see the following output:
+2. Next open the `Sort.c` file and add the `insertionsort()` functionality, place the following between the two functions, `selectionSort()`, `printArray()`:
+
+    ```c
+    ...
+    void selectionSort(int arr[], int n) {
+    ...
+    }
+    // Function to perform insertion sort on an array
+    void insertionSort(int arr[], int n) {
+        // Iterate through the array starting from the second element
+        for (int i = 1; i < n; ++i) {
+            // Store the current element in a variable key
+            int key = arr[i];
+            // Initialize a variable j to track the index of the previous element
+            int j = i - 1;
+            // Move elements of arr[0..i-1], that are greater than key,
+            // to one position ahead of their current position
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j]; // Move the element to the next position
+                j = j - 1; // Move to the previous element
+            }
+            // Insert the key into its correct position in the sorted part of the array
+            arr[j + 1] = key;
+        }
+    }
+
+    void printArray(int arr[], int size) ...
+    ```
+
+3. Like before we need to invoke the `insertionsort()` in the `main()`, you'll pleased to note we are adding one line, and commenting another, go back to `SortingAlgorithms.c`:
+
+    ```c
+    int main()
+    {
+      ...
+
+        for (int i = 0; i < 10000000; i++) {
+        // Using the Middle Element as Pivot    
+        // quicksortMiddle(array1, 0, n - 1);
+
+        // bubbleSort(array1, n);
+
+        // selectionSort(array1, n);
+
+           insertionSort(array1, n); 
+        }
+      ...
+    }
+    ```
+
+4. If you have reproduce the above you should see the following output:
 
     ![](./figures/insertionsort.png)
     
@@ -248,13 +394,24 @@ Insertion sort works by building a sorted array one element at a time by repeate
   
     - Timing:  \\[15.1ns \equiv 15.1 \cdot 10^{-8} =  \frac{151 \cdot 10^{-3}}{10 \cdot 10^6}  \leftarrow \frac{0.151000}{10000000}\\]
 
-7. The graphic below illustrates how the sorting was performed: 
+5. The graphic below illustrates how the sorting was performed: 
 
     ![](./figures/insertion_sort.gif)
 
-
-
 ----------------
+
+## Outcome: 
+
+So we can see that the following sorting algorithms can be ranked by time complexity: 
+
+1. Insertion Sort @ 15.1ns
+2. Bubble Sort @ 33.2ns
+3. Quick Sort @ 33.5ns 
+4. Selection Sort @ 46.4ns
+
+-  Download code here -> [SortingAlgorithms.zip](SortingAlgorithms.zip)
+
+--------------------
 
 ## Investigation and exploration
 
@@ -269,4 +426,3 @@ Insertion sort works by building a sorted array one element at a time by repeate
        - `int array1[] = {90, 80, 70, 65, 60, 55};`
 
 3. Increase the size of the array and see if the current performance changes accross the each algorithm and rank them. 
-
