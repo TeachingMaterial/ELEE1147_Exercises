@@ -1,10 +1,12 @@
 ## Lab 9: Algorithms 
 
-- Linear Search Example, \\(O(n)\\)
+- Quick sort Example, \\( O(n log n)\\)
 
-- Binary search $O(log\ n)$ code example:
+- Bubble sort Example, \\( O(n^2)\\)
 
-- Exponential growth is $O(2^n)$, Fibonacci:
+- Selection Sort Example, \\( O(n^2)\\)
+
+- Insertion Sort Example, \\(O(n^2) \\)
 
 
 > Note: 
@@ -258,5 +260,13 @@ Insertion sort works by building a sorted array one element at a time by repeate
 
 1. Try running each algorithm to see if you get different results, record them and work out the average time, either in code or outside. 
 
-2. Increase the size of the array and see if the current performance changes accross the each algorithm and rank them. 
+2. Run each algorithm again using the following two arrays, and again compare the times:
+
+    - Sorted
+       - `int array1[] = {55, 60, 65, 70, 80, 90};`
+    
+    - Revesed Sorted
+       - `int array1[] = {90, 80, 70, 65, 60, 55};`
+
+3. Increase the size of the array and see if the current performance changes accross the each algorithm and rank them. 
 
