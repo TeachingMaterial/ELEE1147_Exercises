@@ -130,11 +130,11 @@ In this lab we are going to explore various sorting algorithms sorting a small d
     ```
 6. If you have reproduce the above you should see the following output:
 
-    ![](./figures/mergesort.png)
+    ![](./figures/quicksort.png)
     
     - You should see that the original array is sorted and the the time taken.
      - Time taken currentlty shows as milliseconds, however this 10^6 times larger than actual time. Remember we repeat the algorithm \\(10\cdot10^6\\) times, so we need to divide by the same to get the actual time. 
-Timing:  \\[33.1ns \equiv 33.1 \cdot 10^{-8} =  \frac{331 \cdot 10^{-3}}{10 \cdot 10^6}  \leftarrow \frac{0.331000}{10000000}\\]
+Timing:  \\[33.5ns \equiv 33.5 \cdot 10^{-8} =  \frac{335 \cdot 10^{-3}}{10 \cdot 10^6}  \leftarrow \frac{0.335000}{10000000}\\]
 
 7. The graphic below illustrates how the sorting was performed: 
 
@@ -260,4 +260,3 @@ Insertion sort works by building a sorted array one element at a time by repeate
 
 2. Increase the size of the array and see if the current performance changes accross the each algorithm and rank them. 
 
- 
