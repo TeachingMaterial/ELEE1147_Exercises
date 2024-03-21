@@ -175,6 +175,9 @@ Here is a table of possible format specifiers for input and output:
 
 ## 7. Data Types
 
+- Create a new file with nano like this:
+
+`$ nano dataTypeSize.c`
 
 - We are going to write a program that returns the size of each data type availabe in `c`, modify the program to look like below:
 
@@ -198,3 +201,196 @@ Here is a table of possible format specifiers for input and output:
 
 - Run program to see the data types and there available sizes in bytes: 
     ![](./figures/step6.png)
+
+## 8. Conditions in C (If-Statement)
+
+### Basic if statement
+
+In C, the `if` statement is a fundamental control structure that allows you to make decisions based on certain conditions. It enables you to execute different blocks of code based on whether a condition is `true` or `false`.
+
+### Create a C Program
+1. Create a new C file using a text editor like `nano`:
+
+    ```c
+    $ nano IfStatement.c
+    ```
+2. Write a program that applies the `if` statement in C to check `if` the variable `num` is greater than 5 using an `if` statement. If the condition is `true`, the code inside the `if` block is executed, and it prints a message.
+
+    ```c
+    #include <stdio.h>
+
+    int main() {
+        int num = 10;
+
+        if (num > 5) {
+            printf("The number is greater than 5.\n");
+        }
+
+        return 0;
+    }
+    ```
+
+3. Save the file and exit the text editor.
+
+4. Compile your C code using the `gcc` compiler to generate an executable file:
+    ```sh
+    $ gcc IfStatement.c -o IfStatement.exe
+    ```
+
+5. Run your C program using the generated executable file:
+
+    ```sh
+    $ ./IfStatement.exe
+    ```
+
+This program will output "The number is greater than 5" because the condition `num > 5` is `true`.
+
+
+### If-else statement
+
+You can use an `if-else` statement to execute different code blocks for true and false conditions. Update your code as follows:
+
+```c
+#include <stdio.h>
+
+int main() {
+    int num = 3;
+
+    if (num > 5) {
+        printf("The number is greater than 5.\n");
+    } else {
+        printf("The number is not greater than 5.\n");
+    }
+
+    return 0;
+}
+```
+
+### If-else if statement
+
+You can use the `if-else if` statement to handle multiple conditions. Update your code as follows:
+
+```c
+#include <stdio.h>
+
+int main() {
+    int num = 0;
+
+    if (num > 0) {
+        printf("The number is positive.\n");
+    } else if (num < 0) {
+        printf("The number is negative.\n");
+    } else {
+        printf("The number is zero.\n");
+    }
+
+    return 0;
+}
+```
+
+## Exersices
+To write the code for each of the following tasks, ~open this link and accept the task~. A C file has been created for each task; you only need to write the code for each one. Again, you can use either use VScode or Codepsaces on Github after accepting the task .
+
+
+
+### Exercise-1: Even or Odd
+Create a program that checks whether a given integer is even or odd. Prompt the user to enter an integer, and then display a message indicating whether it's even or odd.
+
+```c
+#include <stdio.h>
+
+int main() {
+    int num;
+
+    printf("Enter an integer: ");
+    scanf("%d", &num);
+
+    if (num % 2 == 0) {
+        printf("%d is even.\n", num);
+    } else {
+        printf("%d is odd.\n", num);
+    }
+
+    return 0;
+}
+```
+
+### Exercise-2 Prime Number Checker
+Write a program that determines if a given number is prime or not.
+
+> **Note:**
+>> - A prime number is a natural number greater than 1 that cannot be formed by multiplying two smaller natural numbers. In other words, a prime number has only two positive divisors: 1 and itself. For example, the first few prime numbers are 2, 3, 5, 7, 11, 13, 17, and so on. These numbers are only divisible evenly by 1 and the number itself.
+
+```c
+
+#include <stdio.h>
+
+int is_prime(int number) {
+    if (number < 2) {
+        return 0; // False
+    }
+    for (int i = 2; i * i <= number; i++) {
+        if (number % i == 0) {
+            return 0; // False
+        }
+    }
+    return 1; // True
+}
+
+int main() {
+    int num;
+
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    if (is_prime(num)) {// calling the function above.
+        printf("%d is a prime number.\n", num);
+    } else {
+        printf("%d is not a prime number.\n", num);
+    }
+
+    return 0; 
+}
+```
+
+### Exercise-3 : Simple Calculator
+Write a basic calculator program that allows the user to perform addition, subtraction, multiplication, and division on two numbers. Ask the user to enter the operation they want to perform and the numbers to operate on.
+
+```c
+#include <stdio.h>
+
+int main() {
+    char operation;
+    double num1, num2, result;
+
+    printf("Enter operation (+, -, *, /): ");
+    scanf(" %c", &operation);
+
+    printf("Enter first number: ");
+    scanf("%lf", &num1);
+
+    printf("Enter second number: ");
+    scanf("%lf", &num2);
+
+    if (operation == '+') {
+        result = num1 + num2;
+    } else if (operation == '-') {
+        result = num1 - num2;
+    } else if (operation == '*') {
+        result = num1 * num2;
+    } else if (operation == '/') {
+        if (num2 != 0) {
+            result = num1 / num2;
+        } else {
+            printf("Cannot divide by zero. Please enter a non-zero second number.\n");
+            return 1; // Return an error code
+        }
+    } else {
+        printf("Invalid operation. Please choose +, -, *, or /.\n");
+        return 1; // Return an error code
+    }
+
+    printf("Result: %lf\n", result);
+
+    return 0; 
+```
